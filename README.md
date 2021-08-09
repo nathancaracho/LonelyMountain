@@ -54,7 +54,29 @@ ROOT \
 ```
 ## Consumer Steps 
 When a consumer is triggered the following steps start
-`[Message parse]` ➜ `[Message validation]` ➜ `[Message Processing]` ➜ `[Message queue menage]`, if any step failure the other steps not is called.
+[Message parse](#The-message-parse) , [Message validation](#The-message-validation) , [Message Processing](#The-message-processing) and [Message queue menage](#Message-queue-menage), if any step failure the other steps not is called.
+```text
+
+🠳Failure                                        Success🠳
+        .---------------------------.
+        |       Message Parse       |
+        '---------------------------'
+                ┃               ┃
+                ┃               🠳     
+                ┃  .--------------------.
+                ┃  | Message validation |
+                ┃  '--------------------'
+                ┃    ┃          ┃
+                ┃    ┃          🠳
+                ┃    ┃    .--------------------.
+                ┃    ┃    | Message Processing |
+                ┃    ┃    '--------------------'
+                ┃    🠳          ┃ 
+                🠳               🠳
+        .--------------------------.
+        |  Message queue menage    |     
+        '--------------------------'
+```
 ### The message parse
 The message parse is the step when queued message is parsed to an entity, the message only accept JSON formats and must have the same structure than entity.
 
