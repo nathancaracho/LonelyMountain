@@ -1,11 +1,11 @@
 # Lonely Mountain
-[Lonely Mountain](http://tolkiengateway.net/wiki/Lonely_Mountain) is a `consumer` library and `consumer` template. 
+[Lonely Mountain](http://tolkiengateway.net/wiki/Lonely_Mountain) is a `consumer` wrapper library and `consumer` template, the consumer project is composing by one `Worker` to one or many `Consumers`. The `Worker` is root folder project and wrapper all `Consumers` with one `appsettings`, this `appsettings` is shared with others `Consumers`. The `Consumer`is a queue process project composing by three components [Message](#Message), [Validator](#Validator) and [Consumer](#Consumer).
 
 ## Todo
 - [ ] Add Template Creator
     - [x] Create template
-    - [ ] Add packer to template
     - [ ] Add Worker template
+    - [ ] Add packer to template
 - [ ] Add appsetting injection 
 - [ ] Add Service bus supplier
 - [ ] Add Tests
@@ -16,7 +16,8 @@
 - [x] Add project structure
 - [x] Add template example
 - [x] Explain consumer concept
-- [ ] Explain Worker concept
+- [x] Explain Worker concept
+- [ ] Add Summary for all methods
 
 ## Project structure
 ``` text
@@ -141,11 +142,11 @@ Failure
     Task.FromResult(Result.Failure("Some error happened when I try process the message"));
 ```  
 
-## How to use template (WIP)
+## How to use template
 > The template is not on nuget yet.  
 
 
-Install consumer .net template
+Install lm-consumer  template
 ```bash
 dotnet new --install LonelyMountain.Consumer
 ```
@@ -153,7 +154,7 @@ After install template create template using sourcing name
 ```bash
 dotnet new lm-consumer -o YourProject.Worker.Customer
 ```
-Folder generated
+Generated folder
 ```text
 YourProject \
 ┣ 📂 Worker \
@@ -162,7 +163,8 @@ YourProject \
 ┣ ┣ ┣  CustomerConsumer.cs 
 ┣ ┣ ┣  CustomerMessage.cs 
 ┣ ┣ ┣  CustomerValidator.cs 
-┗ ┗ ┗  program.cs
+┣ ┣ ┗  program.cs
+┗ ┗ appsettings.json
 ```
 ## How to run
 ```bash
