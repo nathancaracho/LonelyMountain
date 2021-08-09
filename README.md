@@ -141,6 +141,8 @@ Failure
 
 ## How to use template (WIP)
 > The template is not on nuget yet.  
+
+
 Install consumer .net template
 ```bash
 dotnet new --install LonelyMountain.Consumer
@@ -159,4 +161,25 @@ YourProject \
 ┣ ┣ ┣  CustomerMessage.cs 
 ┣ ┣ ┣  CustomerValidator.cs 
 ┗ ┗ ┗  program.cs
+```
+## how to run
+```bash
+dotnet run -p YourProject.Worker.Customer
+info: YourProject.Src.Worker[0]
+      Worker start running at: 08/09/2021 01:09:53 -03:00
+info: YourProject.Src.Subscriber.RabbitMQSubscriber[0]
+      Start subscribing YourProject.Src.Queue.ActiveQueue consumer
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: YourProject.Src.Subscriber.RabbitMQSubscriber[0]
+      The insert-customer consumer as triggered
+
+fail: YourProject.Src.Subscriber.RabbitMQSubscriber[0]
+      An error was occurred when try processing insert-customer. Error: Error when try deserialize message body 'test' is an invalid JSON literal. Expected the literal 'true'. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+
+info: YourProject.Src.Subscriber.RabbitMQSubscriber[0]
+      The insert-customer was proccessed with success
+
 ```
