@@ -510,3 +510,5 @@ MigrationBackup/
 # Coverage files
 *.trx
 coverage*
+
+rabbitmq/
