@@ -12,6 +12,7 @@
 - [ ] Fix example
     - [ ] Add K8 example
     - [x] Add worker folder
+- [x] Add project structure
 
 ## Project structure
 ``` text
@@ -39,11 +40,11 @@ ROOT \
 ┣ LonelyMountain.Example \
 ┃ ┣ 📂 Worker \
 ┃ ┣ ┣ 📂 Customer \
-┃ ┣ ┣ ┣  ┣  LonelyMountain.Example.csproj
-┃ ┣ ┣ ┣  ┣  CustomerConsumer.cs 
-┃ ┣ ┣ ┣  ┣  CustomerMessage.cs 
-┃ ┣ ┣ ┣  ┣  CustomerValidator.cs 
-┃ ┗ ┗ ┗  ┗  program.cs
+┃ ┣ ┣ ┣  LonelyMountain.Example.csproj
+┃ ┣ ┣ ┣  CustomerConsumer.cs 
+┃ ┣ ┣ ┣  CustomerMessage.cs 
+┃ ┣ ┣ ┣  CustomerValidator.cs 
+┃ ┗ ┗ ┗  program.cs
 ┃
 ┣  docker-compose.yml
 ┣  README.md
