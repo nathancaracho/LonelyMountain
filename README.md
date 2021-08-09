@@ -140,7 +140,7 @@ Failure
 ```  
 
 ## How to use template (WIP)
-> The template not on nuget yet.
+> The template is not on nuget yet.  
 Install consumer .net template
 ```bash
 dotnet new --install LonelyMountain.Consumer
