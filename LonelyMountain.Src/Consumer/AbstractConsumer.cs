@@ -39,7 +39,7 @@ namespace LonelyMountain.Src.Consumer
             return Result.Success(message);
         }
         private string GetErrorFromResult(ValidationResult validation) =>
-            string.Concat(validation.Errors.Select(error => error.ErrorMessage), "; \n");
+            string.Join("; \n",validation.Errors.Select(error => String.Join(", ", error.ErrorMessage)) );
 
 
         public async Task<Result> ProcessMessage(byte[] rawMessage) =>
