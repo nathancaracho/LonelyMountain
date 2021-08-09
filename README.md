@@ -1,5 +1,5 @@
 # Lonely Mountain
-[Lonely Mountain](http://tolkiengateway.net/wiki/Lonely_Mountain) is a worker library and consumer template. 
+[Lonely Mountain](http://tolkiengateway.net/wiki/Lonely_Mountain) is a `consumer` library and `consumer` template. 
 
 ## Todo
 - [ ] Add Template Creator
