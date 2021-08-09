@@ -5,6 +5,7 @@
 - [ ] Add Template Creator
     - [x] Create template
     - [ ] Add packer to template
+    - [ ] Add Worker template
 - [ ] Add appsetting injection 
 - [ ] Add Service bus supplier
 - [ ] Add Tests
@@ -15,6 +16,7 @@
 - [x] Add project structure
 - [x] Add template example
 - [x] Explain consumer concept
+- [ ] Explain Worker concept
 
 ## Project structure
 ``` text
