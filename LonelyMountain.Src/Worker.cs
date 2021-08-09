@@ -21,16 +21,16 @@ namespace LonelyMountain.Src
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            _logger.LogInformation("Worker start running at: {time}", DateTimeOffset.Now);
+
             using var serviceScope = _services.CreateScope();
             var subscribers = serviceScope.ServiceProvider.GetServices<ISubscriber>();
             foreach (var subscriber in subscribers)
                 subscriber.Subscribe();
 
             while (!stoppingToken.IsCancellationRequested)
-            {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 await Task.Delay(1000, stoppingToken);
-            }
+
         }
     }
 }
