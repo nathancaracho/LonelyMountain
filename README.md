@@ -13,6 +13,39 @@
     - [ ] Add K8 example
     - [x] Add worker folder
 
-## Folder structure
+## Project structure
 ``` text
+ROOT \
+┣ LonelyMountain.Src \
+┃ ┣ 📂 consumer \
+┃ ┣ 📂 Ioc \
+┃ ┣ 📂 Queue \
+┃ ┣ 📂 Subscriber \
+┃ ┣ ┣  Bootstrap.cs 
+┃ ┣ ┣  Worker.cs 
+┃ ┗ ┗  LonelyMountain.Src.csproj
+┃
+┣ LonelyMountain.Template \
+┃ ┣ 📂 templates \
+┃ ┣ 📂 Consumer \
+┃ ┣ ┣ 📂 .template.config \
+┃ ┣ ┣ ┣  ┗ LonelyMountain.Src.csproj
+┃ ┣ ┣ ┣  projectNameConsumer.cs 
+┃ ┣ ┣ ┣  projectNameMessage.cs 
+┃ ┣ ┣ ┣  projectNameValidator.cs 
+┃ ┣ ┣ ┗  program.cs
+┃ ┗  LonelyMountain.Template.csproj
+┃
+┣ LonelyMountain.Example \
+┃ ┣ 📂 Worker \
+┃ ┣ ┣ 📂 Customer \
+┃ ┣ ┣ ┣  ┣  LonelyMountain.Example.csproj
+┃ ┣ ┣ ┣  ┣  CustomerConsumer.cs 
+┃ ┣ ┣ ┣  ┣  CustomerMessage.cs 
+┃ ┣ ┣ ┣  ┣  CustomerValidator.cs 
+┃ ┗ ┗ ┗  ┗  program.cs
+┃
+┣  docker-compose.yml
+┣  README.md
+┗  LonelyMountain.sln
 ```
