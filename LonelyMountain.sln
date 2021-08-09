@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LonelyMountain.Src", "LonelyMountain.Src\LonelyMountain.Src.csproj", "{F96A32BD-D1EF-4300-885B-AF4B11E5FFBA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LonelyMountain.Example", "LonelyMountain.Example\LonelyMountain.Example.csproj", "{081033ED-4160-4EB1-9AC4-26750268B75D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{F96A32BD-D1EF-4300-885B-AF4B11E5FFBA}.Release|x64.Build.0 = Release|Any CPU
 		{F96A32BD-D1EF-4300-885B-AF4B11E5FFBA}.Release|x86.ActiveCfg = Release|Any CPU
 		{F96A32BD-D1EF-4300-885B-AF4B11E5FFBA}.Release|x86.Build.0 = Release|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Debug|x64.Build.0 = Debug|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Debug|x86.Build.0 = Debug|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Release|x64.ActiveCfg = Release|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Release|x64.Build.0 = Release|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Release|x86.ActiveCfg = Release|Any CPU
+		{081033ED-4160-4EB1-9AC4-26750268B75D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
