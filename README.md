@@ -11,7 +11,7 @@
 - [ ] Create packer to consumer lib
 - [ ] Fix example
     - [ ] Add K8 example
-    - [ ] Add worker folder
+    - [x] Add worker folder
 
 ## Folder structure
 ``` text

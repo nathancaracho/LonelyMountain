@@ -4,7 +4,7 @@ using FluentValidation;
 using LonelyMountain.Src.Consumer;
 using LonelyMountain.Src.Queue;
 
-namespace LonelyMountain.Example
+namespace LonelyMountain.Example.Worker.Consumer
 {
     [ActiveQueue("insert-customer")]
     public class CustomerConsumer : AbstractConsumer<CustomerMessage>

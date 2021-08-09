@@ -3,7 +3,7 @@ using LonelyMountain.Src;
 using LonelyMountain.Src.Ioc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LonelyMountain.Example
+namespace LonelyMountain.Example.Worker.Consumer
 {
     class Program
     {

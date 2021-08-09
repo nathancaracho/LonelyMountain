@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace LonelyMountain.Example
+namespace LonelyMountain.Example.Worker.Consumer
 {
     public class CustomerValidator : AbstractValidator<CustomerMessage>
     {
