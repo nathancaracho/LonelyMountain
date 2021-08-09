@@ -1,3 +1,4 @@
+using System;
 using LonelyMountain.Src.Consumer;
 using LonelyMountain.Src.Queue;
 using LonelyMountain.Src.Subscriber.Connections;
@@ -12,19 +13,18 @@ namespace LonelyMountain.Src.Subscriber
         private readonly IConsumer<TMessage> _consumer;
         private readonly IModel _channel;
         private readonly ILogger _logger;
-  
+
 
         public RabbitMQSubscriber(
             IConsumer<TMessage> consumer
             , ILogger<RabbitMQSubscriber<TMessage>> logger
             , RabbitMQConnection connection)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost", UserName = "guest", Password = "guest" };
+            var factory = new ConnectionFactory() { Uri = new Uri(connection) };
             var conn = factory.CreateConnection();
             _consumer = consumer;
             _channel = conn.CreateModel();
             _logger = logger;
-            _logger.LogInformation("connection {conn}",connection);
         }
 
         public void Subscribe()

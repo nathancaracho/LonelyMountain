@@ -6,8 +6,9 @@
   </PropertyGroup>
  <ItemGroup>
     <ProjectReference Include="..\..\..\LonelyMountain.Src\LonelyMountain.Src.csproj" />
+    <PackageReference Include="FluentValidation" Version="10.3.0" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <Content Include="..\appsettings.json" Link="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

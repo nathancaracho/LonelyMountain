@@ -11,8 +11,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  
+
  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.3.0" />
     <ProjectReference Include="..\LonelyMountain.Src\LonelyMountain.Src.csproj" />
   </ItemGroup>
 </Project>
