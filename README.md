@@ -162,7 +162,7 @@ YourProject \
 ┣ ┣ ┣  CustomerValidator.cs 
 ┗ ┗ ┗  program.cs
 ```
-## how to run
+## How to run
 ```bash
 dotnet run -p YourProject.Worker.Customer
 info: YourProject.Src.Worker[0]
@@ -173,13 +173,12 @@ info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Production
-info: YourProject.Src.Subscriber.RabbitMQSubscriber[0]
-      The insert-customer consumer as triggered
 
+info: YourProject.Src.Subscriber.RabbitMQSubscriber[0]
+      The insert-customer consumer was triggered
 fail: YourProject.Src.Subscriber.RabbitMQSubscriber[0]
       An error was occurred when try processing insert-customer. Error: Error when try deserialize message body 'test' is an invalid JSON literal. Expected the literal 'true'. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
-
 info: YourProject.Src.Subscriber.RabbitMQSubscriber[0]
-      The insert-customer was proccessed with success
+      The insert-customer was processed with success
 
 ```

@@ -36,7 +36,7 @@ namespace LonelyMountain.Src.Subscriber
             var consumer = new EventingBasicConsumer(_channel);
             consumer.Received += async (_, eventArgument) =>
             {
-                _logger.LogInformation("The {consumer} consumer as triggered", queueName);
+                _logger.LogInformation("The {consumer} consumer was triggered", queueName);
 
                 var result = await _consumer.ProcessMessage(eventArgument.Body.ToArray());
 
@@ -47,7 +47,7 @@ namespace LonelyMountain.Src.Subscriber
                 }
                 _channel.BasicNack(eventArgument.DeliveryTag, false, false);
 
-                _logger.LogInformation("The {consumer} was proccessed with success", queueName);
+                _logger.LogInformation("The {consumer} was processed with success", queueName);
             };
 
             _channel.BasicConsume(queue: queueName,
