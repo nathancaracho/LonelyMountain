@@ -1,6 +1,7 @@
 using System;
+using System.Threading.Tasks;
 using LonelyMountain.Src.Consumer;
-using LonelyMountain.Src.Queue;
+using LonelyMountain.Src.ListenOn;
 using LonelyMountain.Src.Subscriber.Connections;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
@@ -8,7 +9,7 @@ using RabbitMQ.Client.Events;
 
 namespace LonelyMountain.Src.Subscriber
 {
-    public class RabbitMQSubscriber<TMessage> : ISubscriber
+    public class RabbitMQSubscriber<TMessage> : AbstractSubscriber<TMessage>, ISubscriber
     {
         private readonly IConsumer<TMessage> _consumer;
         private readonly IModel _channel;
@@ -16,9 +17,10 @@ namespace LonelyMountain.Src.Subscriber
 
 
         public RabbitMQSubscriber(
-            IConsumer<TMessage> consumer
+            IServiceProvider serviceProvider
+            , IConsumer<TMessage> consumer
             , ILogger<RabbitMQSubscriber<TMessage>> logger
-            , RabbitMQConnection connection)
+            , RabbitMQConnection connection) : base(serviceProvider)
         {
             var factory = new ConnectionFactory() { Uri = new Uri(connection) };
             var conn = factory.CreateConnection();
@@ -36,7 +38,8 @@ namespace LonelyMountain.Src.Subscriber
                 ActiveQueueSubscribe(consumer);
         }
 
-        private void ActiveQueueSubscribe(string queueName)
+
+        protected override void ActiveQueueSubscribe(string queueName)
         {
 
             var consumer = new EventingBasicConsumer(_channel);
@@ -44,7 +47,7 @@ namespace LonelyMountain.Src.Subscriber
             {
                 _logger.LogInformation("The {consumer} consumer was triggered", queueName);
 
-                var result = await _consumer.ProcessMessage(eventArgument.Body.ToArray());
+                var result = await CreateScopeAndProccessMessage(eventArgument.Body.ToArray());
 
                 if (result.IsFailure)
                 {

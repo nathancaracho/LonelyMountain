@@ -17,7 +17,7 @@ namespace LonelyMountain.Src.Ioc
             where TConsumer : AbstractConsumer<TMessage> =>
                 service
                 .AddScoped<IConsumer<TMessage>, TConsumer>()
-                .AddScoped<ISubscriber, RabbitMQSubscriber<TMessage>>();
+                .AddSingleton<ISubscriber, RabbitMQSubscriber<TMessage>>();
 
     }
 }

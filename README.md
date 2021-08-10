@@ -18,6 +18,7 @@
 - [x] Explain consumer concept
 - [x] Explain Worker concept
 - [ ] Add Summary for all methods
+- [ ] Fix Consumer scope
 
 ## Project structure
 ``` text
