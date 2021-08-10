@@ -1,6 +1,6 @@
 using System;
 using LonelyMountain.Src.Consumer;
-using LonelyMountain.Src.Queue;
+using LonelyMountain.Src.Queues;
 using LonelyMountain.Src.Subscriber.Connections;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
@@ -10,31 +10,28 @@ namespace LonelyMountain.Src.Subscriber
 {
     public class RabbitMQSubscriber<TMessage> : AbstractSubscriber<TMessage>, ISubscriber
     {
-        private readonly IConsumer<TMessage> _consumer;
         private readonly IModel _channel;
         private readonly ILogger _logger;
 
 
         public RabbitMQSubscriber(
             IServiceProvider serviceProvider
-            , IConsumer<TMessage> consumer
             , ILogger<RabbitMQSubscriber<TMessage>> logger
             , RabbitMQConnection connection) : base(serviceProvider)
         {
             var factory = new ConnectionFactory() { Uri = new Uri(connection) };
             var conn = factory.CreateConnection();
-            _consumer = consumer;
             _channel = conn.CreateModel();
             _logger = logger;
         }
 
         public void Subscribe()
         {
-            var consumer = _consumer.GetConsumerType();
-            _logger.LogInformation("Start subscribing {consumer} consumer", consumer);
+            var queue = GetQueue();
+            _logger.LogInformation("Start subscribing {consumer} consumer", queue);
 
-            if (consumer is ActiveQueue)
-                ActiveQueueSubscribe(consumer);
+            if (queue is ActiveQueue)
+                ActiveQueueSubscribe(queue);
         }
 
 

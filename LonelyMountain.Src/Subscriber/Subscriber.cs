@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using System;
 using LonelyMountain.Src.Consumer;
+using LonelyMountain.Src.Queues;
 
 namespace LonelyMountain.Src.Subscriber
 {
@@ -24,6 +25,12 @@ namespace LonelyMountain.Src.Subscriber
             return await consumer.ProcessMessage(message);
         }
 
+        protected Queue GetQueue()
+        {
+            using var serviceScope = _services.CreateScope();
+            var consumer = serviceScope.ServiceProvider.GetRequiredService<IConsumer<TMessage>>();
+            return consumer.GetConsumerType();
+        }
         protected abstract void ActiveQueueSubscribe(string queueName);
     }
 }

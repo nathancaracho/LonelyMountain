@@ -1,4 +1,4 @@
-namespace LonelyMountain.Src.Queue
+namespace LonelyMountain.Src.Queues
 {
     public class Queue : System.Attribute
     {

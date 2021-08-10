@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using FluentValidation;
 using LonelyMountain.Src.Consumer;
-using LonelyMountain.Src.Queue;
+using LonelyMountain.Src.Queues;
 
 namespace LonelyMountain.Example.Worker.Consumer
 {

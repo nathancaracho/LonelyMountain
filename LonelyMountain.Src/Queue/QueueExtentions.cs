@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using LonelyMountain.Src.Consumer;
 
-namespace LonelyMountain.Src.Queue
+namespace LonelyMountain.Src.Queues
 {
 
     public static class QueueExtentions
