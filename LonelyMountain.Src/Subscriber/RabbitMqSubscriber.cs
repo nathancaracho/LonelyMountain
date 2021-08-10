@@ -1,7 +1,6 @@
 using System;
-using System.Threading.Tasks;
 using LonelyMountain.Src.Consumer;
-using LonelyMountain.Src.ListenOn;
+using LonelyMountain.Src.Queue;
 using LonelyMountain.Src.Subscriber.Connections;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
