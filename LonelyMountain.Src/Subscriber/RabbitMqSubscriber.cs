@@ -8,7 +8,7 @@ using RabbitMQ.Client.Events;
 
 namespace LonelyMountain.Src.Subscriber
 {
-    public class RabbitMQSubscriber<TMessage> : AbstractSubscriber<TMessage>, ISubscriber
+    public class RabbitMQSubscriber<TMessage> : AbstractSubscriber<TMessage>
     {
         private readonly IModel _channel;
         private readonly ILogger _logger;
@@ -17,7 +17,7 @@ namespace LonelyMountain.Src.Subscriber
         public RabbitMQSubscriber(
             IServiceProvider serviceProvider
             , ILogger<RabbitMQSubscriber<TMessage>> logger
-            , RabbitMQConnection connection) : base(serviceProvider)
+            , RabbitMQConnection connection) : base(serviceProvider, logger)
         {
             var factory = new ConnectionFactory() { Uri = new Uri(connection) };
             var conn = factory.CreateConnection();
@@ -25,14 +25,7 @@ namespace LonelyMountain.Src.Subscriber
             _logger = logger;
         }
 
-        public void Subscribe()
-        {
-            var queue = GetQueue();
-            _logger.LogInformation("Start subscribing {consumer} consumer", queue);
 
-            if (queue is ActiveQueue)
-                ActiveQueueSubscribe(queue);
-        }
         protected override void ActiveQueueSubscribe(string queueName)
         {
 
