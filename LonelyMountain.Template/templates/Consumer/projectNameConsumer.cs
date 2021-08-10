@@ -2,11 +2,11 @@ using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using FluentValidation;
 using LonelyMountain.Src.Consumer;
-using LonelyMountain.Src.Queue;
+using LonelyMountain.Src.Queues;
 
 namespace projectName
 {
-    [ActiveQueue("insert-projectName")]
+    [ActiveQueue("insert-customer")]
     public class projectNameConsumer : AbstractConsumer<projectNameMessage>
     {
         public projectNameConsumer(IValidator<projectNameMessage> validator) : base(validator) { }

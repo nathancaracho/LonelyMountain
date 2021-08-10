@@ -2,14 +2,13 @@ using FluentValidation;
 
 namespace projectName
 {
-    public class ExampleValidator : AbstractValidator<projectNameMessage>
+    public class projectNameValidator : AbstractValidator<projectNameMessage>
     {
-        public ExampleValidator()
+        public projectNameValidator()
         {
-            RuleFor(projectName => projectName.Name)
+            RuleFor(customer => customer.Name)
             .NotEmpty()
             .WithMessage("The [Name] can't be null or empty");
-
         }
 
 
