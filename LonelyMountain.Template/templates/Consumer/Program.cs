@@ -11,9 +11,7 @@ namespace projectName
     {
         static void Main(string[] args) =>
             Bootstrap.Start((service, configuration) => service
-                                        .AddRabbitMQConsumer<projectNameMessage, projectNameConsumer>()
-                                        .AddTransient<IValidator<projectNameMessage>, projectNameValidator>()
-                                        .AddRabbitMQConnection(configuration)
+                                        .AddRabbitMQConsumer<CustomerMessage, CustomerValidator, CustomerConsumer>(configuration)
                                         , args);
     }
 }

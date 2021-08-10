@@ -33,8 +33,6 @@ namespace LonelyMountain.Src.Subscriber
             if (queue is ActiveQueue)
                 ActiveQueueSubscribe(queue);
         }
-
-
         protected override void ActiveQueueSubscribe(string queueName)
         {
 

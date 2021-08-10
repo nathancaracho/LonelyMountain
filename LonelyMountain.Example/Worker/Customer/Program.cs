@@ -11,9 +11,7 @@ namespace LonelyMountain.Example.Worker.Consumer
     {
         static void Main(string[] args) =>
             Bootstrap.Start((service, configuration) => service
-                                        .AddRabbitMQConsumer<CustomerMessage, CustomerConsumer>()
-                                        .AddTransient<IValidator<CustomerMessage>, CustomerValidator>()
-                                        .AddRabbitMQConnection(configuration)
+                                        .AddRabbitMQConsumer<CustomerMessage, CustomerValidator, CustomerConsumer>(configuration)
                                         , args);
     }
 }
