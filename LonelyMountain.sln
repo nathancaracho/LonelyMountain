@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LonelyMountain.Src", "LonelyMountain.Src\LonelyMountain.Src.csproj", "{EB25DF12-8094-4E01-B1B9-DC8D73AF2375}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LonelyMountain.Template", "LonelyMountain.Template\LonelyMountain.Template.csproj", "{A51A6385-0800-440A-AF54-52497A56D167}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LonelyMountain.Example", "LonelyMountain.Example", "{58D55F2E-F5AC-45FF-BC50-C90468044D22}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{12D56585-9F01-4146-B1FF-2A92AC42425A}"
@@ -38,18 +36,6 @@ Global
 		{EB25DF12-8094-4E01-B1B9-DC8D73AF2375}.Release|x64.Build.0 = Release|Any CPU
 		{EB25DF12-8094-4E01-B1B9-DC8D73AF2375}.Release|x86.ActiveCfg = Release|Any CPU
 		{EB25DF12-8094-4E01-B1B9-DC8D73AF2375}.Release|x86.Build.0 = Release|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Debug|x64.Build.0 = Debug|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Debug|x86.Build.0 = Debug|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Release|x64.ActiveCfg = Release|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Release|x64.Build.0 = Release|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Release|x86.ActiveCfg = Release|Any CPU
-		{A51A6385-0800-440A-AF54-52497A56D167}.Release|x86.Build.0 = Release|Any CPU
 		{549780CB-5E48-4D6A-89DB-4B7D4E9D10F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{549780CB-5E48-4D6A-89DB-4B7D4E9D10F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{549780CB-5E48-4D6A-89DB-4B7D4E9D10F1}.Debug|x64.ActiveCfg = Debug|Any CPU
