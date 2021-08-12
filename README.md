@@ -6,7 +6,7 @@
     - [x] Create template
     - [ ] Add Worker template
     - [ ] Add packer to template
-- [ ] Add appsetting injection 
+- [x] Add appsetting injection 
 - [ ] Add Service bus supplier
 - [ ] Add Tests
 - [ ] Create packer to consumer lib
@@ -18,13 +18,14 @@
 - [x] Explain consumer concept
 - [x] Explain Worker concept
 - [ ] Add Summary for all methods
-- [ ] Fix Consumer scope
+- [x] Fix Consumer scope
 
 ## Project structure
 ``` text
 ROOT \
 ┣ LonelyMountain.Src \
-┃ ┣ 📂 consumer \
+┃ ┣ 📂 Connection \
+┃ ┣ 📂 Consumer \
 ┃ ┣ 📂 Ioc \
 ┃ ┣ 📂 Queue \
 ┃ ┣ 📂 Subscriber \
