@@ -1,7 +1,7 @@
 using FluentValidation;
 using LonelyMountain.Src.Consumer;
 using LonelyMountain.Src.Subscriber;
-using LonelyMountain.Src.Subscriber.Connections;
+using LonelyMountain.Src.Connections;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

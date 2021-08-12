@@ -1,5 +1,5 @@
 using System;
-using LonelyMountain.Src.Subscriber.Connections;
+using LonelyMountain.Src.Connections;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;

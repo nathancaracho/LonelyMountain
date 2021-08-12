@@ -35,8 +35,8 @@ namespace LonelyMountain.Src.Subscriber
 
         public void Subscribe()
         {
-            var queue = typeof(TConsumer).GetCustomAttributes(typeof(Queue), true).FirstOrDefault() as Queue;
-            _logger.LogInformation("Start subscribing {consumer} consumer", (string)queue);
+            Queue queue = typeof(TConsumer);
+            _logger.LogInformation("Start subscribing a {type} called {queue}", queue.Description, queue.Name);
 
             if (queue is ActiveQueue)
                 ActiveQueueSubscribe(queue);
