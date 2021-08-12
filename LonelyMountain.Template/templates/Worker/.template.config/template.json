@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Nathan Caracho",
+    "classifications": [ "Worker"],
+    "identity": "LonelyMountain.Worker",
+    "name": "Lonely Mountain Worker",
+    "shortName": "lm-worker",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    },
+    "sourceName": "projectName"
+  }
