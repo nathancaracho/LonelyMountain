@@ -1,6 +1,4 @@
 using System;
-using LonelyMountain.Src.Consumer;
-using LonelyMountain.Src.Queues;
 using LonelyMountain.Src.Subscriber.Connections;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
@@ -8,7 +6,7 @@ using RabbitMQ.Client.Events;
 
 namespace LonelyMountain.Src.Subscriber
 {
-    public class RabbitMQSubscriber<TMessage> : AbstractSubscriber<TMessage>
+    public class RabbitMQSubscriber<TMessage, TConsumer> : AbstractSubscriber<TMessage, TConsumer>
     {
         private readonly IModel _channel;
         private readonly ILogger _logger;
@@ -16,7 +14,7 @@ namespace LonelyMountain.Src.Subscriber
 
         public RabbitMQSubscriber(
             IServiceProvider serviceProvider
-            , ILogger<RabbitMQSubscriber<TMessage>> logger
+            , ILogger<RabbitMQSubscriber<TMessage, TConsumer>> logger
             , RabbitMQConnection connection) : base(serviceProvider, logger)
         {
             var factory = new ConnectionFactory() { Uri = new Uri(connection) };
@@ -54,3 +52,4 @@ namespace LonelyMountain.Src.Subscriber
     }
 }
 // https://medium.com/nerd-for-tech/dead-letter-exchanges-at-rabbitmq-net-core-b6348122460d 
+

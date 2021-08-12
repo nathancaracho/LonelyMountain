@@ -22,7 +22,7 @@ namespace LonelyMountain.Src.Ioc
                 service
                 .AddTransient<IValidator<TMessage>, TValidator>()
                 .AddScoped<IConsumer<TMessage>, TConsumer>()
-                .AddSingleton<ISubscriber, RabbitMQSubscriber<TMessage>>()
+                .AddSingleton<ISubscriber, RabbitMQSubscriber<TMessage, TConsumer>>()
                 .AddSingleton(new RabbitMQConnection(config.GetSection("MessageBroker").GetSection("RabbitMQ").Value));
     }
 }
