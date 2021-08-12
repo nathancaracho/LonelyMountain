@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageVersion>0.0.1-apha-0</PackageVersion>
+    <PackageId>LonelyMountain</PackageId>
+    <Title>Lonely Mountain Api Library</Title>
+    <Authors>nathan.caracho@hotmail.com</Authors>
+    <Description>Lonely Mountain worker consumer</Description>
+    <PackageTags>dotnet-new;templates</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageType>Template</PackageType>
+    <PackageVersion>0.0.1-apha-0</PackageVersion>
+    <PackageId>LonelyMountain.Templates</PackageId>
+    <Title>Lonely Mountain Template</Title>
+    <Authors>nathan.caracho@hotmail.com</Authors>
+    <Description>Lonely Mountain worker consumer template</Description>
+    <PackageTags>dotnet-new;templates</PackageTags>
   </PropertyGroup>
 
 </Project>
