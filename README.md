@@ -1,7 +1,7 @@
 # Lonely Mountain
 [Lonely Mountain](http://tolkiengateway.net/wiki/Lonely_Mountain) is a `consumer` wrapper library and `consumer` template, the consumer project is composing by one `Worker` to one or many `Consumers`. The `Worker` is root folder project and wrapper all `Consumers` with one `appsettings`, this `appsettings` is shared with others `Consumers`. The `Consumer`is a queue process project composing by three components [Message](#Message), [Validator](#Validator) and [Consumer](#Consumer).
 
-[Todos](https://tranquil-bench-d6f.notion.site/7f4a2771d0834531a78c4fabd13cca53?v=6592141c21784927a5737fa16ffed032
+[Todos](https://tranquil-bench-d6f.notion.site/7f4a2771d0834531a78c4fabd13cca53?v=6592141c21784927a5737fa16ffed032)
 
 ## Project structure
 ``` text
