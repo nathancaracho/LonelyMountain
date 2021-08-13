@@ -43,28 +43,7 @@ ROOT \
 ## Consumer Steps 
 When a consumer is triggered the following steps start
 [Message parse](#The-message-parse) , [Message validation](#The-message-validation) , [Message Processing](#The-message-processing) and [Message queue management](#Message-queue-management), if any step failure the other steps not is called.
-```text
-
-🠳Failure                                        Success🠳
-        .---------------------------.
-        |       Message Parse       |
-        '---------------------------'
-                ┃               ┃
-                ┃               🠳     
-                ┃  .--------------------.
-                ┃  | Message validation |
-                ┃  '--------------------'
-                ┃    ┃          ┃
-                ┃    ┃          🠳
-                ┃    ┃    .--------------------.
-                ┃    ┃    | Message Processing |
-                ┃    ┃    '--------------------'
-                ┃    🠳          ┃ 
-                🠳               🠳
-        .--------------------------.
-        |  Message queue management |     
-        '--------------------------'
-```
+<img src="https://github.com/nathancaracho/LonelyMountain/blob/main/Docs/cunsumer-steps.png?raw=true" alt="consumer steps" width="400"/>
 ### The message parse
 The message parse is the step when queued message is parsed to an entity, the message only accept JSON formats and must have the same structure than entity.
 
@@ -125,7 +104,7 @@ Failure
 ```csharp
     protected override Task<Result> Action(Message message) => 
     Task.FromResult(Result.Failure("Some error happened when I try process the message"));
-```  
+```
 
 ## How to use template
 > The template is not on nuget yet.  
