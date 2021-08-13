@@ -42,7 +42,7 @@ ROOT \
 ```
 ## Consumer Steps 
 When a consumer is triggered the following steps start
-[Message parse](#The-message-parse) , [Message validation](#The-message-validation) , [Message Processing](#The-message-processing) and [Message queue menage](#Message-queue-menage), if any step failure the other steps not is called.
+[Message parse](#The-message-parse) , [Message validation](#The-message-validation) , [Message Processing](#The-message-processing) and [Message queue management](#Message-queue-management), if any step failure the other steps not is called.
 ```text
 
 🠳Failure                                        Success🠳
@@ -62,7 +62,7 @@ When a consumer is triggered the following steps start
                 ┃    🠳          ┃ 
                 🠳               🠳
         .--------------------------.
-        |  Message queue menage    |     
+        |  Message queue management |     
         '--------------------------'
 ```
 ### The message parse
@@ -74,8 +74,8 @@ The message validation step will validate the parsed entity using [Fluent Valida
 ### The message processing 
 The message processing is the step when the message is processed, persisted, or else.
 
-### Message queue menage
-The message queue menage is the step when the message is discarded when successful or sent to `dead letter` if any previous step failure.  
+### Message queue management
+The message queue management is the step when the message is discarded when successful or sent to `dead letter` if any previous step failure.  
 
 ## Consumer components 
 The worker consumer is composed by [Message](#Message), [Validator](#Validator) and [Consumer](#Consumer).
