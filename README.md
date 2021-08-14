@@ -1,7 +1,10 @@
-# Lonely Mountain
-[Lonely Mountain](http://tolkiengateway.net/wiki/Lonely_Mountain) is a `consumer` wrapper library and `consumer` template, the consumer project is composing by one `Worker` to one or many `Consumers`. The `Worker` is root folder project and wrapper all `Consumers` with one `appsettings`, this `appsettings` is shared with others `Consumers`. The `Consumer`is a queue process project composing by three components [Message](#Message), [Validator](#Validator) and [Consumer](#Consumer).
+<p align="center">
+  <img height="140" src="https://github.com/nathancaracho/LonelyMountain/blob/main/Docs/logo.png?raw=true">
+</p>
+# Lonely Mountain 　　　　　　　　　　　　　　　　　　　　[TODO](https://tranquil-bench-d6f.notion.site/7f4a2771d0834531a78c4fabd13cca53?v=6592141c21784927a5737fa16ffed032)
 
-[Todos](https://tranquil-bench-d6f.notion.site/7f4a2771d0834531a78c4fabd13cca53?v=6592141c21784927a5737fa16ffed032)
+[Lonely Mountain](http://tolkiengateway.net/wiki/Lonely_Mountain) is a `consumer` wrapper library and `consumer` template, the consumer project is composing by one `Worker` to one or many `Consumers`. The `Worker` is root folder project and wrapper all `Consumers` with one `appsettings`, this `appsettings` is shared with others `Consumers`. The `Consumer` is a queue process project composing of three components [Message](about:blank#Message), [Validator](about:blank#Validator), and [Consumer](about:blank#Consumer).
+
 
 ## Project structure
 ``` text
@@ -40,27 +43,37 @@ ROOT \
 ┣  README.md
 ┗  LonelyMountain.sln
 ```
-## Consumer Steps 
+## Consumer Steps
+
 When a consumer is triggered the following steps start
-[Message parse](#The-message-parse) , [Message validation](#The-message-validation) , [Message Processing](#The-message-processing) and [Message queue management](#Message-queue-management), if any step failure the other steps not is called.
-<img src="https://github.com/nathancaracho/LonelyMountain/blob/main/Docs/cunsumer-steps.png?raw=true" alt="consumer steps" width="400"/>
-### The message parse
-The message parse is the step when queued message is parsed to an entity, the message only accept JSON formats and must have the same structure than entity.
+
+[Message parse](about:blank#The-message-parse), [Message validation](about:blank#The-message-validation), [Message Processing](about:blank#The-message-processing), and [Message queue management](about:blank#Message-queue-management)
+
+, if any step failure the other steps not is called.
+
+![https://github.com/nathancaracho/LonelyMountain/blob/main/Docs/cunsumer-steps.png?raw=true](https://github.com/nathancaracho/LonelyMountain/blob/main/Docs/cunsumer-steps.png?raw=true)
+
+### The message parses is the step when a queued message is parsed to an entity, the message only accepts JSON formats and must have the same structure as entity.
 
 ### The message validation
+
 The message validation step will validate the parsed entity using [Fluent Validation](https://fluentvalidation.net/). This step ensures the structure is exactly what the consumer needs.
 
-### The message processing 
+### The message processing
+
 The message processing is the step when the message is processed, persisted, or else.
 
 ### Message queue management
-The message queue management is the step when the message is discarded when successful or sent to `dead letter` if any previous step failure.  
 
-## Consumer components 
-The worker consumer is composed by [Message](#Message), [Validator](#Validator) and [Consumer](#Consumer).
+The message queue management is when the message is discarded when successful or sent to `dead letter` if any previous step fails.
+
+## Consumer components
+
+The worker consumer is composed of [Message](about:blank#Message), [Validator](about:blank#Validator), and [Consumer](about:blank#Consumer).
 
 ### Message
-The message is the queued entity. 
+
+The message is the queued entity.
 ```csharp
     public record CustomerMessage(string Name, string Identity, int Age);
 ```
