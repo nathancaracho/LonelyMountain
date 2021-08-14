@@ -52,7 +52,10 @@ When a consumer is triggered the following steps start
 
 , if any step failure the other steps not is called.
 
-![https://github.com/nathancaracho/LonelyMountain/blob/main/Docs/cunsumer-steps.png?raw=true](https://github.com/nathancaracho/LonelyMountain/blob/main/Docs/cunsumer-steps.png?raw=true)
+<p align="center">
+  <img height="400" src="https://github.com/nathancaracho/LonelyMountain/blob/main/Docs/cunsumer-steps.png?raw=true](https://github.com/nathancaracho/LonelyMountain/blob/main/Docs/cunsumer-steps.png?raw=true">
+</p>
+
 
 ### The message parses is the step when a queued message is parsed to an entity, the message only accepts JSON formats and must have the same structure as entity.
 
