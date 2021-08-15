@@ -4,5 +4,5 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-  <Import Project="..\packages.csproj" />
+  <Import Project="..\LonelyMountain.Example.Worker.csproj" />
 </Project>
