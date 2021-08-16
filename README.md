@@ -147,6 +147,7 @@ YourProject \
 ┣ ┣ ┣  CustomerMessage.cs 
 ┣ ┣ ┣  CustomerValidator.cs 
 ┣ ┣ ┗  program.cs
+┣ ┣ YourProject.Worker.csproj
 ┗ ┗ appsettings.json
 ```
 ## How to run
