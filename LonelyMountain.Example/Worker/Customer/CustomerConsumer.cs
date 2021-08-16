@@ -6,11 +6,14 @@ using LonelyMountain.Src.Queues;
 
 namespace LonelyMountain.Example.Worker.Consumer
 {
-    [Topic("insert-customer")]
+    [ActiveQueue("insert-customer")]
     public class CustomerConsumer : AbstractConsumer<CustomerMessage>
     {
         public CustomerConsumer(IValidator<CustomerMessage> validator) : base(validator) { }
-        protected override Task<Result> Action(CustomerMessage message) =>
-            Task.FromResult(Result.Success());
+        protected override Task<Result> Action(CustomerMessage message, IAcknowledgeManager acknowledge)
+        {
+            acknowledge.BasicAck();
+            return Task.FromResult(Result.Success());
+        }
     }
 }

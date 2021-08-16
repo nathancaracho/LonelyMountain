@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using FluentValidation;
 using FluentValidation.Results;
+using LonelyMountain.Src.Queues;
 
 namespace LonelyMountain.Src.Consumer
 {
@@ -15,7 +16,7 @@ namespace LonelyMountain.Src.Consumer
 
         public AbstractConsumer(IValidator<TMessage> validator) => _validator = validator;
 
-        protected abstract Task<Result> Action(TMessage message);
+        protected abstract Task<Result> Action(TMessage message, IAcknowledgeManager acknowledge);
 
         protected Result<TMessage> ParseMessage(byte[] rawMessage)
         {
@@ -39,13 +40,13 @@ namespace LonelyMountain.Src.Consumer
             return Result.Success(message);
         }
         private string GetErrorFromResult(ValidationResult validation) =>
-            string.Join("; \n",validation.Errors.Select(error => String.Join(", ", error.ErrorMessage)) );
+            string.Join("; \n", validation.Errors.Select(error => String.Join(", ", error.ErrorMessage)));
 
 
-        public async Task<Result> ProcessMessage(byte[] rawMessage) =>
+        public async Task<Result> ProcessMessage(byte[] rawMessage, IAcknowledgeManager acknowledge) =>
            await ParseMessage(rawMessage)
            .Check(message => Validate(message))
-           .Check(message => Action(message));
+           .Check(message => Action(message, acknowledge));
 
     }
 }

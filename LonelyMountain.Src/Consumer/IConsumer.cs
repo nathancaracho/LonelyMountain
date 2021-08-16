@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
+using LonelyMountain.Src.Queues;
 
 namespace LonelyMountain.Src.Consumer
 {
@@ -13,7 +14,7 @@ namespace LonelyMountain.Src.Consumer
 
     public interface IConsumer<TMessage>
     {
-        Task<Result> ProcessMessage(byte[] rawMessage);
+        Task<Result> ProcessMessage(byte[] rawMessage,IAcknowledgeManager acknowledge);
     }
 
 }

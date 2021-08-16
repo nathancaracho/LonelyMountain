@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LonelyMountain.Src.Configuration;
+using LonelyMountain.Src.Queues;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -30,10 +31,10 @@ namespace LonelyMountain.Src.Subscriber
         {
             try
             {
-
+                var acknowledge = new RabbitMQAcknowledgeManager(_channel, eventArgument.DeliveryTag);
                 _logger.LogInformation("The {consumer} consumer was triggered", _queueName);
 
-                var result = await CreateScopeAndProccessMessage(eventArgument.Body.ToArray());
+                var result = await CreateScopeAndProccessMessage(eventArgument.Body.ToArray(), acknowledge);
 
                 if (result.IsFailure)
                 {
@@ -110,7 +111,7 @@ namespace LonelyMountain.Src.Subscriber
 
         protected override void TopicSubscribe()
         {
-            configureQueue("topic", Guid.NewGuid().ToString());
+            configureQueue("topic");
             var consumer = new EventingBasicConsumer(_channel);
             consumer.Received += async (model, eventArgument) => await QueueEvent(model, eventArgument);
             _channel.BasicConsume(queue: _queueName,
