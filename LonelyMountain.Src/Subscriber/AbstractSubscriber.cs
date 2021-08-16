@@ -13,13 +13,17 @@ namespace LonelyMountain.Src.Subscriber
     {
         private readonly ILogger<AbstractSubscriber<TMessage, TConsumer>> _logger;
         private readonly IServiceProvider _services;
-
+        private readonly Queue _queue;
+        protected readonly string _queueName;
         protected AbstractSubscriber(IServiceProvider services, ILogger<AbstractSubscriber<TMessage, TConsumer>> logger)
         {
             _logger = logger;
             _services = services;
+            _queue = typeof(TConsumer);
+            _queueName = _queue;
         }
-        protected abstract void ActiveQueueSubscribe(string queueName);
+        protected abstract void ActiveQueueSubscribe();
+        protected abstract void TopicSubscribe();
 
         /// <summary>
         /// Create new consumer scope and proccess message
@@ -35,13 +39,13 @@ namespace LonelyMountain.Src.Subscriber
 
         public void Subscribe()
         {
-            Queue queue = typeof(TConsumer);
-            _logger.LogInformation("Start subscribing a {type} called {queue}", queue.Description, queue.Name);
+            _logger.LogInformation("Start subscribing a {type} called {queue}", _queue.Description, _queue.Name);
 
-            if (queue is ActiveQueue)
-                ActiveQueueSubscribe(queue);
+            if (_queue is ActiveQueue)
+                ActiveQueueSubscribe();
+            if (_queue is Topic)
+                TopicSubscribe();
         }
-
 
     }
 }

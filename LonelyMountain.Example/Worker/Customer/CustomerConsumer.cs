@@ -6,7 +6,7 @@ using LonelyMountain.Src.Queues;
 
 namespace LonelyMountain.Example.Worker.Consumer
 {
-    [ActiveQueue("insert-customer")]
+    [Topic("insert-customer")]
     public class CustomerConsumer : AbstractConsumer<CustomerMessage>
     {
         public CustomerConsumer(IValidator<CustomerMessage> validator) : base(validator) { }

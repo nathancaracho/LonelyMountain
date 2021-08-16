@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using LonelyMountain.Src.Configuration;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
@@ -25,87 +26,97 @@ namespace LonelyMountain.Src.Subscriber
             _configuration = configuration;
         }
 
-
-        protected override void ActiveQueueSubscribe(string queueName)
+        private async Task QueueEvent(object model, BasicDeliverEventArgs eventArgument)
         {
-
-            configureQueue();
-
-            var consumer = new EventingBasicConsumer(_channel);
-            consumer.Received += async (_, eventArgument) =>
+            try
             {
-                try
+
+                _logger.LogInformation("The {consumer} consumer was triggered", _queueName);
+
+                var result = await CreateScopeAndProccessMessage(eventArgument.Body.ToArray());
+
+                if (result.IsFailure)
                 {
+                    _channel.BasicNack(eventArgument.DeliveryTag, false, false);
+                    _logger.LogError("An error was occurred when try processing {consumer}. Error: {error}", _queueName, result.Error);
+                }
 
-                    _logger.LogInformation("The {consumer} consumer was triggered", queueName);
+                _logger.LogInformation("The {consumer} was processed with success", _queueName);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("An Error occurred when the consumer {queue} try process the message, Error : {error}", _queueName, ex.Message);
+                throw;
+            }
 
-                    var result = await CreateScopeAndProccessMessage(eventArgument.Body.ToArray());
+        }
+        private void configureQueue(string queueType, string routingKey = "")
+        {
+            try
+            {
 
-                    if (result.IsFailure)
+                _logger.LogInformation("Start configure active queue {queue}", _queueName);
+
+                var dlqQueue = $"dlq-{_queueName}";
+
+                var queueExchange = $"{_queueName}.exchange";
+                var dlqQueueExchange = $"{dlqQueue}.exchange";
+
+
+                _channel.ExchangeDeclare(queueExchange, queueType);
+                _channel.QueueDeclare
+                (
+                    _queueName, true, false, false,
+                    new Dictionary<string, object>
                     {
-                        _channel.BasicNack(eventArgument.DeliveryTag, false, false);
-                        _logger.LogError("An error was occurred when try processing {consumer}. Error: {error}", queueName, result.Error);
-                    }
-
-                    _logger.LogInformation("The {consumer} was processed with success", queueName);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError("An Error occurred when the consumer {queue} try process the message, Error : {error}", queueName, ex.Message);
-                    throw;
-                }
-            };
-
-            _channel.BasicConsume(queue: queueName,
-                                 autoAck: false,
-                                 consumer: consumer);
-
-            void configureQueue()
-            {
-                try
-                {
-
-                    _logger.LogInformation("Start configure active queue {queue}", queueName);
-
-                    var dlqQueue = $"dlq-{queueName}";
-
-                    var queueExchange = $"{queueName}.exchange";
-                    var dlqQueueExchange = $"{dlqQueue}.exchange";
-
-
-                    _channel.ExchangeDeclare(queueExchange, "direct");
-                    _channel.QueueDeclare
-                    (
-                        queueName, true, false, false,
-                        new Dictionary<string, object>
-                        {
                         {"x-dead-letter-exchange", dlqQueueExchange},
                         {"x-dead-letter-routing-key", dlqQueue}
-                        }
-                    );
-                    _channel.QueueBind(queueName, queueExchange, string.Empty, null);
+                    }
+                );
+                _channel.QueueBind(_queueName, queueExchange, routingKey, null);
 
-                    _channel.ExchangeDeclare(dlqQueueExchange, "fanout");
-                    _channel.QueueDeclare
-                    (
-                        dlqQueue, true, false, false,
-                        new Dictionary<string, object> {
+                _channel.ExchangeDeclare(dlqQueueExchange, "fanout");
+                _channel.QueueDeclare
+                (
+                    dlqQueue, true, false, false,
+                    new Dictionary<string, object> {
                         { "x-dead-letter-exchange", queueExchange },
                         { "x-message-ttl", _configuration.Expiration },
-                        }
-                    );
-                    _channel.QueueBind(dlqQueue, dlqQueueExchange, string.Empty, null);
+                    }
+                );
+                _channel.QueueBind(dlqQueue, dlqQueueExchange, string.Empty, null);
 
-                    _logger.LogInformation("Finish configure active queue {queue}", queueName);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError("An error occurred when try configure queue {queueName}, Error: {error}", queueName, ex.Message);
-                    throw;
-                }
+                _logger.LogInformation("Finish configure active queue {queue}", _queueName);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("An error occurred when try configure queue {_queueName}, Error: {error}", _queueName, ex.Message);
+                throw;
             }
         }
 
+        protected override void ActiveQueueSubscribe()
+        {
+
+            configureQueue("direct");
+
+            var consumer = new EventingBasicConsumer(_channel);
+            consumer.Received += async (model, eventArgument) => await QueueEvent(model, eventArgument);
+
+            _channel.BasicConsume(queue: _queueName,
+                                 autoAck: false,
+                                 consumer: consumer);
+        }
+
+        protected override void TopicSubscribe()
+        {
+            configureQueue("topic", Guid.NewGuid().ToString());
+            var consumer = new EventingBasicConsumer(_channel);
+            consumer.Received += async (model, eventArgument) => await QueueEvent(model, eventArgument);
+            _channel.BasicConsume(queue: _queueName,
+                                 autoAck: false,
+                                 consumer: consumer);
+        }
     }
 }
 // https://medium.com/nerd-for-tech/dead-letter-exchanges-at-rabbitmq-net-core-b6348122460d 
