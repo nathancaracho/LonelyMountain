@@ -111,16 +111,18 @@ The `Queue` annotation is used to categorize in Active queue (`ActiveQueue`), De
     public class CustomerConsumer : AbstractConsumer<CustomerMessage>
     {
         public CustomerConsumer(IValidator<CustomerMessage> validator) : base(validator) { }
-        protected override Task<Result> Action(CustomerMessage message) =>
-            Task.FromResult(Result.Success());
+        protected override async Task<Result> Action(CustomerMessage message,IAcknowledgeManager acknowledge){
+            await acknowledge.BasicAck();
+            return await  Task.FromResult(Result.Success());
+        }
     }
 ```
 
 The consumer use [CSharpFunctionalExtensions](https://github.com/vkhorikov/CSharpFunctionalExtensions) to wrap the result on a monad. The consumer result can be `Success` or `Failure`, the `Failure` must contain the failure reason.
 Failure
 ```csharp
-    protected override Task<Result> Action(Message message) => 
-    Task.FromResult(Result.Failure("Some error happened when I try process the message"));
+    protected override Task<Result> Action(Message message,IAcknowledgeManager acknowledge) =>
+        return Task.FromResult(Result.Failure("Some error happened when I try process the message"));
 ```
 
 ## How to use template

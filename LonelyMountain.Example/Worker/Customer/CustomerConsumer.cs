@@ -10,10 +10,10 @@ namespace LonelyMountain.Example.Worker.Consumer
     public class CustomerConsumer : AbstractConsumer<CustomerMessage>
     {
         public CustomerConsumer(IValidator<CustomerMessage> validator) : base(validator) { }
-        protected override Task<Result> Action(CustomerMessage message, IAcknowledgeManager acknowledge)
+        protected override async Task<Result> Action(CustomerMessage message, IAcknowledgeManager acknowledge)
         {
-            acknowledge.BasicAck();
-            return Task.FromResult(Result.Success());
+            await acknowledge.BasicAck();
+            return await Task.FromResult(Result.Success());
         }
     }
 }
